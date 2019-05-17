@@ -13,4 +13,5 @@ class Markov(object):
         self.inputWordCount = 0
         self.setOrder(order)
         self.setMaxWords(max_words)
-        
+        if dictFile == False:
+            pass
