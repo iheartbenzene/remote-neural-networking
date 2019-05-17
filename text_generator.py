@@ -1,17 +1,15 @@
-import markov
-import nltk
-import re
-import pprint
-import random
+import numpy as np
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import Dropout
+from keras.layers import LTSM
+from keras.callbacks import ModelCheckpoint
+from keras.utils import np_utils
 
-import wolframclient
+alice_file = "alice.txt"
+dracula_file = "dracula.txt"
+jekyll_hyde_file = "jekyll_and_hyde.txt"
 
-class Markov(object):
-    def __init__(self, order = 2, dictFile = '', max_words = 100):
-        self.table = {}
-        self.inputLineCount = 0
-        self.inputWordCount = 0
-        self.setOrder(order)
-        self.setMaxWords(max_words)
-        if dictFile == False:
-            pass
+raw_text_alice = open(alice_file).read()
+raw_text_dracula = open(dracula_file).read()
+raw_text_jekyll = open(jekyll_hyde_file).read()
