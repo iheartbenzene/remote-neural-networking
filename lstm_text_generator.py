@@ -66,4 +66,4 @@ path_to_file = "weights-improvement-{epoch:02d}-{loss:0.4f}.hdf5"
 checkpoint = ModelCheckpoint(path_to_file, monitor='loss', verbose=1, save_best_only = True, mode='min')
 callbacks_list = [checkpoint]
 
-model.fit(wonderlandX, wonderlandy, epochs=20, batch_size=128, callbacks=callbacks_list)
+alice_model = model.fit(wonderlandX, wonderlandy, epochs=20, batch_size=128, callbacks=callbacks_list)
