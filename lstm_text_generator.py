@@ -41,7 +41,7 @@ jekyll_hyde_chars = len(raw_text_jekyll)
 jekyll_hyde_vocab = len(jekyll_hyde)
 
 # Can be refactored into a function
-sequence_length = 100
+sequence_length = 10
 aliceX = []
 aliceY = []
 for i in range(0, alice_chars - sequence_length, 1):
@@ -66,4 +66,4 @@ path_to_file = "weights-improvement-{epoch:02d}-{loss:0.4f}.hdf5"
 checkpoint = ModelCheckpoint(path_to_file, monitor='loss', verbose=1, save_best_only = True, mode='min')
 callbacks_list = [checkpoint]
 
-alice_model = model.fit(wonderlandX, wonderlandy, epochs=20, batch_size=128, callbacks=callbacks_list)
+alice_model = model.fit(wonderlandX, wonderlandy, epochs=50, batch_size=128, callbacks=callbacks_list)
