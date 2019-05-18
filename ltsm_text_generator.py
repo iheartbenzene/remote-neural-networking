@@ -58,3 +58,5 @@ model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2])))
 model.add(Dropout(0.2))
 model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
+
+path_to_file = "weights-improvement-{epoch:02d}-{loss:0.4f}.hdf5" 
