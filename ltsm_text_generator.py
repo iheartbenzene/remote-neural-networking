@@ -1,10 +1,13 @@
 import numpy as np
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import Dropout
-from keras.layers import LSTM
-from keras.callbacks import ModelCheckpoint
-from keras.utils import np_utils
+
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense
+from tensorflow.python.keras.layers import Dropout
+from tensorflow.python.keras.layers import LSTM
+from tensorflow.python.keras.callbacks import ModelCheckpoint
+from tensorflow.python.keras.utils import np_utils
+
+# from tensorflow.python.keras import backend as k
 
 def char_to_int(text_list):
     return dict((c, i) for i, c in enumerate(text_list))
@@ -38,7 +41,7 @@ jekyll_hyde_chars = len(raw_text_jekyll)
 jekyll_hyde_vocab = len(jekyll_hyde)
 
 # Can be refactored into a function
-sequence_length = 1000 #approximately 250 words?
+sequence_length = 500 #approximately 125 words?
 aliceX = []
 aliceY = []
 for i in range(0, alice_chars - sequence_length, 1):
