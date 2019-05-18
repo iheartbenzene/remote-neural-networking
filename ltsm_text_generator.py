@@ -37,6 +37,7 @@ dracula_vocab = len(dracula)
 jekyll_hyde_chars = len(raw_text_jekyll)
 jekyll_hyde_vocab = len(jekyll_hyde)
 
+# Can be refactored into a function
 sequence_length = 1000 #approximately 250 words?
 aliceX = []
 aliceY = []
@@ -44,3 +45,6 @@ for i in range(0, alice_chars - sequence_length, 1):
     sequence_in = raw_text_alice[i: i+sequence_length]
     sequence_out = raw_text_alice[i + sequence_length]
     aliceX.append([alice_to_int[char] for char in sequence_in])
+    aliceY.append(alice_to_int[sequence_out])
+
+number_of_patterns = len(aliceX)
