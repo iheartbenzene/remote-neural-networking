@@ -16,6 +16,7 @@ vocabulary_index["<UNUSED>"] = 3
 
 
 text_model = keras.models.load_model("text_model.h5")
+image_model = keras.models.load_model("image_model.h5")
 
 def review_encoder(s):
     encoded = [1]
