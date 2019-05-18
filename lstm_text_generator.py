@@ -74,4 +74,5 @@ alice_compile = model.compile(loss = 'categorical_crossentropy', optimizer = 'ad
 alice_int_to_char = dict((i, c) for i, c in enumerate(alice_chars))
 
 start = np.random.randint(0, len(aliceX)-1)
-# pattern = aliceX
+pattern = aliceX[start]
+print("Seed: ")
