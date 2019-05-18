@@ -49,4 +49,4 @@ for i in range(0, alice_chars - sequence_length, 1):
 
 number_of_patterns = len(aliceX)
 
-# wonderland = np.reshape
+wonderland = np.reshape(aliceX, (number_of_patterns, sequence_length, 1))
