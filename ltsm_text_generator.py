@@ -2,7 +2,7 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
-from keras.layers import LTSM
+from keras.layers import LSTM
 from keras.callbacks import ModelCheckpoint
 from keras.utils import np_utils
 
@@ -53,3 +53,5 @@ wonderlandX = np.reshape(aliceX, (number_of_patterns, sequence_length, 1))
 wonderlandX = wonderlandX / float(alice_vocab)
 wonderlandY = np_utils.to_categorical(aliceY)
 
+model = Sequential()
+model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2])))
