@@ -67,3 +67,11 @@ checkpoint = ModelCheckpoint(path_to_file, monitor='loss', verbose=1, save_best_
 callbacks_list = [checkpoint]
 
 alice_model = model.fit(wonderlandX, wonderlandy, epochs=50, batch_size=64, callbacks=callbacks_list)
+alice_model_file = "weights-improvement-50-1.4290.hdf5"
+alice_model_load = model.load_weights(alice_model_file)
+
+alice_compile = model.compile(loss = 'categorical_crossentropy', optimizer = 'adam')
+alice_int_to_char = dict((i, c) for i, c in enumerate(alice_chars))
+
+start = np.random.randint(0, len(aliceX)-1)
+# pattern = aliceX
