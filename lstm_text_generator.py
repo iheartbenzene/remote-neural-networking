@@ -41,7 +41,7 @@ jekyll_hyde_chars = len(raw_text_jekyll)
 jekyll_hyde_vocab = len(jekyll_hyde)
 
 # Can be refactored into a function
-sequence_length = 500 #approximately 125 words?
+sequence_length = 100
 aliceX = []
 aliceY = []
 for i in range(0, alice_chars - sequence_length, 1):
