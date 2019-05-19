@@ -45,7 +45,7 @@ jekyll_hyde_chars = len(raw_text_jekyll)
 jekyll_hyde_vocab = len(jekyll_hyde)
 
 # Can be refactored into a function
-sequence_length = 100
+sequence_length = 10
 aliceX = []
 aliceY = []
 for i in range(0, alice_chars - sequence_length, 1):
@@ -61,12 +61,18 @@ wonderlandX = wonderlandX / float(alice_vocab)
 wonderlandy = np_utils.to_categorical(aliceY)
 
 model = Sequential()
-model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2]), return_sequences=True))
-model.add(Dropout(0.2))
-model.add(LSTM(256))
+model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2])))
 model.add(Dropout(0.2))
 model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
+
+# model = Sequential()
+# model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2]), return_sequences=True))
+# model.add(Dropout(0.2))
+# model.add(LSTM(256))
+# model.add(Dropout(0.2))
+# model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
+# model.compile(loss='categorical_crossentropy', optimizer='adam')
 
 alice_model_file = "weights-improvement-50-1.4290.hdf5"
 alice_model_load = model.load_weights(alice_model_file)
