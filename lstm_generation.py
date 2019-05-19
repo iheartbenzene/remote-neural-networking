@@ -99,4 +99,4 @@ for i in range(1000):
     alice_pattern.append(alice_index)
     alice_pattern = alice_pattern[1:len(alice_pattern)]
 
-print("\n Tadaa!")
+print("\n So it has been written.")
