@@ -1,5 +1,5 @@
 import numpy as np
-import sys
+# import sys
 
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
@@ -60,23 +60,22 @@ wonderlandX = np.reshape(aliceX, (number_of_patterns, sequence_length, 1))
 wonderlandX = wonderlandX / float(alice_vocab)
 wonderlandy = np_utils.to_categorical(aliceY)
 
-# model = Sequential()
-# model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2]), return_sequences=True))
-# model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2])))
-# model.add(Dropout(0.2))
-# model.add(LSTM(256))
-# model.add(Dropout(0.2))
-# model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
-# model.compile(loss='categorical_crossentropy', optimizer='adam')
-
-# path_to_file = "biggs/weights-improvement-{epoch:02d}-{loss:0.4f}-biggs.hdf5"
-
-
 model = Sequential()
-model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2])))
+model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2]), return_sequences=True))
+model.add(Dropout(0.2))
+model.add(LSTM(256))
 model.add(Dropout(0.2))
 model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
+
+path_to_file = "biggs/weights-improvement-{epoch:02d}-{loss:0.4f}-biggs.hdf5"
+
+
+# model = Sequential()
+# model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2])))
+# model.add(Dropout(0.2))
+# model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
+# model.compile(loss='categorical_crossentropy', optimizer='adam')
 
 path_to_file = "wedge/weights-improvement-{epoch:02d}-{loss:0.4f}.hdf5"
 
