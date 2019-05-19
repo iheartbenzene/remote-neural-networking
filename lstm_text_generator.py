@@ -12,6 +12,9 @@ from tensorflow.python.keras.utils import np_utils
 def char_to_int(text_list):
     return dict((c, i) for i, c in enumerate(text_list))
 
+def int_to_char(text_list):
+    return dict((i, c) for i, c in enumerate(text_list))
+
 alice_file = "alice.txt"
 dracula_file = "dracula.txt"
 jekyll_hyde_file = "jekyll_and_hyde.txt"
@@ -26,11 +29,11 @@ raw_text_jekyll = raw_text_jekyll.lower()
 
 # Can be refactored into a function
 alice = sorted(list(set(raw_text_alice)))
-alice_to_int = char_to_int(alice)
+alice_char_to_int = char_to_int(alice)
 dracula = sorted(list(set(raw_text_dracula)))
-dracula_to_int = char_to_int(dracula)
+dracula_char_to_int = char_to_int(dracula)
 jekyll_hyde = sorted(list(raw_text_jekyll))
-jekyll_hyde_to_int = char_to_int(jekyll_hyde)
+jekyll_hyde_char_to_int = char_to_int(jekyll_hyde)
 
 # Can be refactored into a function
 alice_chars = len(raw_text_alice)
@@ -71,7 +74,7 @@ alice_model_file = "weights-improvement-50-1.4290.hdf5"
 alice_model_load = model.load_weights(alice_model_file)
 
 alice_compile = model.compile(loss = 'categorical_crossentropy', optimizer = 'adam')
-alice_int_to_char = dict((i, c) for i, c in enumerate(alice_chars))
+alice_int_to_char = int_to_char(alice)
 
 start = np.random.randint(0, len(aliceX)-1)
 pattern = aliceX[start]
