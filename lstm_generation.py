@@ -63,6 +63,8 @@ wonderlandy = np_utils.to_categorical(aliceY)
 model = Sequential()
 model.add(LSTM(256, input_shape = (wonderlandX.shape[1], wonderlandX.shape[2])))
 model.add(Dropout(0.2))
+model.add(LSTM(256))
+model.add(Dropout(0.2))
 model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
