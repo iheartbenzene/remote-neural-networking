@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
@@ -50,8 +51,8 @@ aliceY = []
 for i in range(0, alice_chars - sequence_length, 1):
     sequence_in = raw_text_alice[i: i+sequence_length]
     sequence_out = raw_text_alice[i + sequence_length]
-    aliceX.append([alice_to_int[char] for char in sequence_in])
-    aliceY.append(alice_to_int[sequence_out])
+    aliceX.append([alice_char_to_int[char] for char in sequence_in])
+    aliceY.append(alice_char_to_int[sequence_out])
 
 number_of_patterns = len(aliceX)
 
@@ -65,11 +66,6 @@ model.add(Dropout(0.2))
 model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-path_to_file = "weights-improvement-{epoch:02d}-{loss:0.4f}.hdf5"
-checkpoint = ModelCheckpoint(path_to_file, monitor='loss', verbose=1, save_best_only = True, mode='min')
-callbacks_list = [checkpoint]
-
-alice_model = model.fit(wonderlandX, wonderlandy, epochs=50, batch_size=64, callbacks=callbacks_list)
 alice_model_file = "weights-improvement-50-1.4290.hdf5"
 alice_model_load = model.load_weights(alice_model_file)
 
@@ -77,5 +73,19 @@ alice_compile = model.compile(loss = 'categorical_crossentropy', optimizer = 'ad
 alice_int_to_char = int_to_char(alice)
 
 start = np.random.randint(0, len(aliceX)-1)
-pattern = aliceX[start]
+alice_pattern = aliceX[start]
 print("Initialize with a seed value: ")
+print("\"", ''.join([alice_int_to_char[value] for value in alice_pattern]), "\"")
+
+for i in range(1000):
+    alice_x = np.reshape(alice_pattern, (1, len(alice_pattern), 1))
+    alice_x = alice_x / float(alice_vocab)
+    alice_prediction = model.predict(alice_x, verbose=0)
+    alice_index = np.argmax(alice_prediction)
+    alice_result = alice_int_to_char[alice_index]
+    alice_sequence_in = [alice_int_to_char[value] for value in alice_pattern]
+    sys.stdout.write(alice_result)
+    alice_pattern.append(alice_index)
+    alice_pattern = alice_pattern[1:len(alice_pattern)]
+
+print("\n Tadaa!")
