@@ -79,5 +79,6 @@ model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
 path_to_file = "wedge/weights-improvement-{epoch:02d}-{loss:0.4f}.hdf5"
+
 checkpoint = ModelCheckpoint(path_to_file, monitor='loss', verbose=1, save_best_only = True, mode='min')
 callbacks_list = [checkpoint]
