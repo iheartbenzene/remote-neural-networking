@@ -45,7 +45,7 @@ jekyll_hyde_chars = len(raw_text_jekyll)
 jekyll_hyde_vocab = len(jekyll_hyde)
 
 # Can be refactored into a function
-sequence_length = 100
+sequence_length = 50
 aliceX = []
 aliceY = []
 for i in range(0, alice_chars - sequence_length, 1):
@@ -69,6 +69,6 @@ model.add(Dropout(0.2))
 model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-path_to_file = "weights-improvement-{epoch:02d}-{loss:0.4f}.hdf5"
+path_to_file = "weights-improvement-{epoch:02d}-{loss:0.4f}-biggs.hdf5"
 checkpoint = ModelCheckpoint(path_to_file, monitor='loss', verbose=1, save_best_only = True, mode='min')
 callbacks_list = [checkpoint]
