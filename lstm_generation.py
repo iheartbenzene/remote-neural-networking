@@ -74,7 +74,10 @@ model.compile(loss='categorical_crossentropy', optimizer='adam')
 # model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 # model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-alice_model_file = "weights-improvement-50-1.4290.hdf5"
+# alice_model_file = "biggs/weights-improvement- - .hdf5" #fix with actual weight file
+# alice_model_load = model.load_weights(alice_model_file)
+
+alice_model_file = "wedge/weights-improvement-50-1.4290.hdf5"
 alice_model_load = model.load_weights(alice_model_file)
 
 alice_compile = model.compile(loss = 'categorical_crossentropy', optimizer = 'adam')

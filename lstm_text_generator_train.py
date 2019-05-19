@@ -69,6 +69,6 @@ model.add(Dropout(0.2))
 model.add(Dense(wonderlandy.shape[1], activation = 'softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-path_to_file = "weights-improvement-{epoch:02d}-{loss:0.4f}-biggs.hdf5"
+path_to_file = "biggs/weights-improvement-{epoch:02d}-{loss:0.4f}-biggs.hdf5"
 checkpoint = ModelCheckpoint(path_to_file, monitor='loss', verbose=1, save_best_only = True, mode='min')
 callbacks_list = [checkpoint]
